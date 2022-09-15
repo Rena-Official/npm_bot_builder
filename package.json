@@ -4,7 +4,7 @@
     "inquirer": "^7.3.3"
   },
   "name": "@renaapp/discord-bot-builder",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "bin/main",
   "bin": {
     "discord_bot_builder": "bin/main"
