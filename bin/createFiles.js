@@ -110,7 +110,7 @@ export class ExtendedClient extends Client {
         }
 
         this.on('ready', () => {
-            const guild = client.guilds.cache.get(\${process.env.GUILD_ID})
+            const guild = this.guilds.cache.get(process.env.GUILD_ID)
             guild?.commands.set(slashCommands).then(() => {
                 console.log(chalk.green(\`[+] \${guild?.name}で\${slashCommands.length}個のスラッシュコマンドを正常に登録しました\`))
             })
@@ -233,7 +233,7 @@ async function createBaseFiles(token, guildId) {
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build ; start:prod",
+    "start": "npm run build ; npm run start:prod",
     "start:dev": "ts-node-dev src/index.ts",
     "start:prod": "node dist/index.js",
     "build": "tsc -p .",

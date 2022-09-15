@@ -3,11 +3,11 @@
     "fs": "^0.0.1-security",
     "inquirer": "^7.3.3"
   },
-  "name": "discord_bot_builder",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@renaapp/discord-bot-builder",
+  "version": "1.0.4",
+  "main": "bin/main",
   "bin": {
-    "discord_bot_builder": "bin/createFiles.js"
+    "discord_bot_builder": "bin/main"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rena-discord/npm_bot_builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rena-discord/npm_bot_builder/issues"
+  },
+  "homepage": "https://github.com/rena-discord/npm_bot_builder#readme",
   "description": ""
 }
