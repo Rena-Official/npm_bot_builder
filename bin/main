@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const inquirer = require('inquirer');
+const { createInterfaceFiles, createBaseFiles, createIndex, createPingCommand, createTypeFiles } = require('./createFiles');
+const { createFolders, createInfoFolder } = require('./createFolders');
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'token',
+            message: 'BotのTokenを入力してください',
+        },
+        {
+            type: 'list',
+            name: 'commandType',
+            message: 'スラッシュコマンドの種類を選択してください',
+            choices: [
+                'グローバルコマンド(全てのサーバーで登録されます)',
+                'サーバーコマンド(特定のサーバーのみに登録されます)'
+            ]
+        },
+    ])
+    .then(async ({ token, commandType }) => {
+        let guildId = '';
+        if (commandType === 'サーバーコマンド(特定のサーバーのみに登録されます)') {
+            const guildIdResponse = await inquirer
+                .prompt([
+                    {
+                        type: 'input',
+                        name: 'guildId',
+                        message: '登録するギルドIDを入力してください'
+                    }
+                ]);
+            guildId = guildIdResponse.guildId;
+
+            await createFolders();
+            (guildId === '') ? await createInterfaceFiles({ isGuildCommand: false }) : await createInterfaceFiles({ isGuildCommand: true })
+            await createBaseFiles(token, guildId)
+            await createInfoFolder()
+            await createIndex()
+            await createPingCommand()
+            await createTypeFiles()
+        } else {
+            await createFolders();
+            (guildId === '') ? await createInterfaceFiles({ isGuildCommand: false }) : await createInterfaceFiles({ isGuildCommand: true })
+            await createBaseFiles(token, guildId)
+            await createInfoFolder()
+            await createIndex()
+            await createPingCommand()
+            await createTypeFiles()
+        }
+    });
