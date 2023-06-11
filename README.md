@@ -1,1 +1,1 @@
-npx i @renaapp/discord-bot-builder",
+npx i @renaapp/discord-bot-builder
